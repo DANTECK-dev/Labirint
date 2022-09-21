@@ -5,7 +5,7 @@
         Title="Labirint"
         Height="400" 
         Width="600"
-        Icon="/mainicon.ico"
+        Icon="/mainicon1.ico"
         ResizeMode="NoResize" 
         Closing="Window_Closing"
         Style="{StaticResource VS2012WindowStyle}"

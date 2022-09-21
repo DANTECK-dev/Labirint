@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Properties\**" />
+    <EmbeddedResource Remove="Properties\**" />
+    <None Remove="Properties\**" />
+    <Page Remove="Properties\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.Threading.Thread" Version="4.3.0" />
   </ItemGroup>
 
