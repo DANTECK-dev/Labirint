@@ -19,9 +19,27 @@ namespace WpfApp3
     /// </summary>
     public partial class Game : Window
     {
+        MainWindow mainWindow;
+
+        public bool isRunning = true;
+
         public Game()
         {
             InitializeComponent();
+            isRunning = true;
+        }
+        public Game(MainWindow mainWindow)
+        {
+            InitializeComponent();
+            this.mainWindow = mainWindow;
+            isRunning = true;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            isRunning = false;
+            if (mainWindow.isRunning == true)
+                mainWindow.Close();
         }
     }
 }

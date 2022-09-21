@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp3"
         mc:Ignorable="d"
-        Title="Game" Height="800" Width="1000" ResizeMode="NoResize" BorderBrush="#FF15F3CA" Background="#FF252525" Foreground="#FF15F3CA">
+        Title="Game" Height="800" Width="1000" ResizeMode="NoResize" BorderBrush="#FF15F3CA" Background="#FF252525" Foreground="#FF15F3CA" Closing="Window_Closing">
     <Window.Resources>
         <Style x:Key="CanvasStyle1" TargetType="{x:Type Canvas}"/>
     </Window.Resources>

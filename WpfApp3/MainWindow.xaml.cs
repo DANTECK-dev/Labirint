@@ -28,6 +28,9 @@ namespace WpfApp3
         SolidColorBrush Green = new SolidColorBrush(Color.FromRgb(21, 243, 202));
         SolidColorBrush Orange = new SolidColorBrush(Color.FromRgb(243, 163, 21));
         SolidColorBrush Red = new SolidColorBrush(Color.FromRgb(243, 21, 21));
+
+        Game game;
+        public bool isRunning = false;
         
         public MainWindow()
         {
@@ -35,6 +38,13 @@ namespace WpfApp3
             //thread = new Thread(LF_Fliking);
             //thread.IsBackground = true;
             //thread.Start();
+            isRunning = true;
+        }
+        public MainWindow(Game game)
+        {
+            InitializeComponent();
+            this.game = game;
+            isRunning = true;
         }
 
         private async void StartGame_Click(object sender, RoutedEventArgs e)
@@ -77,6 +87,10 @@ namespace WpfApp3
                 MessageBox.Show("Высота поля должна быть не меньше 10 и не больше 30", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            if(game == null)
+                game = new Game(this);
+            game.Visibility = Visibility.Visible;
+            this.Visibility = Visibility.Hidden;
         }
         public void LengthField_Fliking(IAsyncResult aRes)
         {
@@ -174,6 +188,14 @@ namespace WpfApp3
         private void HeightField_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             HeightField.Text = " ";
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            isRunning = false;
+            if(game.isRunning == true)
+                game.Close();
+
         }
     }
 }
