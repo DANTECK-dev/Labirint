@@ -40,11 +40,19 @@ namespace WpfApp3
             //thread.Start();
             isRunning = true;
         }
+
         public MainWindow(Game game)
         {
             InitializeComponent();
             this.game = game;
             isRunning = true;
+        }
+
+        public MainWindow(Game game, bool isRunning)
+        {
+            InitializeComponent();
+            this.game = game;
+            this.isRunning = isRunning;
         }
 
         private async void StartGame_Click(object sender, RoutedEventArgs e)
@@ -57,32 +65,28 @@ namespace WpfApp3
                 //await HeightField_Fliking();
                 //await LengthField_Fliking();
                 MessageBox.Show("Некоректно введены поля длины и высоты", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                
                 return;
             }
             if (!Int32.TryParse(HeightField.Text, out _))
             {
                 //await HeightField_Fliking();
                 MessageBox.Show("Некоректно введена высота поля", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                
                 return;
             }
             if (!Int32.TryParse(LengthField.Text, out _))
             { 
                 //await LengthField_Fliking();
-                
                 MessageBox.Show("Некоректно введена длина поля", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-               
                 return;
             }
             int length = Int32.Parse(LengthField.Text.Replace(" ", string.Empty));
-            if (length > 30 || length < 10)
+            if (length > 100 || length < 20)
             {
                 MessageBox.Show("Длина поля должна быть не меньше 10 и не больше 30", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             int height = Int32.Parse(HeightField.Text.Replace(" ", string.Empty));
-            if (height > 30 || height < 10)
+            if (height > 100 || height < 20)
             {
                 MessageBox.Show("Высота поля должна быть не меньше 10 и не больше 30", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -92,6 +96,8 @@ namespace WpfApp3
             game.Visibility = Visibility.Visible;
             this.Visibility = Visibility.Hidden;
         }
+
+        /*        
         public void LengthField_Fliking(IAsyncResult aRes)
         {
             for (int i = 0; i < 2; i++)
@@ -104,6 +110,7 @@ namespace WpfApp3
                 Thread.Sleep(50);
             }
         }
+
         public void HeightField_Fliking()
         {
             for (int i = 0; i < 2; i++)
@@ -116,6 +123,8 @@ namespace WpfApp3
                 Thread.Sleep(50);
             }
         }
+        */
+
         private void LengthField_TextChanged(object sender, TextChangedEventArgs e)
         {
             string str = LengthField.Text;
@@ -129,7 +138,7 @@ namespace WpfApp3
             {
                 LengthField.Text = str;
                 int length = Int32.Parse(str.Replace(" ", string.Empty));
-                if (length > 30 || length < 10)
+                if (length > 100 || length < 20)
                 {
                     LengthField.BorderBrush = Red;
                     LengthField.Foreground = Red;
@@ -166,7 +175,7 @@ namespace WpfApp3
             {
                 HeightField.Text = str;
                 int height = Int32.Parse(str.Replace(" ", string.Empty));
-                if (height > 30 || height < 10)
+                if (height > 100 || height < 20)
                 {
                     HeightField.BorderBrush = Red;
                     HeightField.Foreground = Red;
@@ -190,12 +199,11 @@ namespace WpfApp3
             HeightField.Text = " ";
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        /*private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             isRunning = false;
             if(game.isRunning == true)
                 game.Close();
-
-        }
+        }*/
     }
 }

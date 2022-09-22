@@ -21,18 +21,48 @@ namespace WpfApp3
     {
         MainWindow mainWindow;
 
-        public bool isRunning = true;
+        public bool isRunning = false;
+
+        Cell[][] cells;
 
         public Game()
         {
             InitializeComponent();
             isRunning = true;
         }
+
         public Game(MainWindow mainWindow)
         {
             InitializeComponent();
             this.mainWindow = mainWindow;
             isRunning = true;
+            RandGenerate();
+        }
+        
+        private void RandGenerate()
+        {
+            cells = new Cell[Convert.ToInt32(mainWindow.LengthField.Text.ToString())][];
+            Random random = new Random();
+            for(int i = 0; i < cells.Length; i++)
+            {
+                cells[i] = new Cell[Convert.ToInt32(mainWindow.HeightField.Text.ToString())];
+
+                for(var j = 0; j < cells[0].Length; j++)
+                {
+                    int rnd = random.Next(0, 2);
+                    if (rnd == 0)
+                        cells[i][j].isWall = false;
+                    else 
+                        cells[i][j].isWall = true;
+                }
+            }
+        }
+
+        public Game(MainWindow mainWindow, bool isRunning)
+        {
+            InitializeComponent();
+            this.mainWindow = mainWindow;
+            this.isRunning = isRunning;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -41,5 +71,10 @@ namespace WpfApp3
             if (mainWindow.isRunning == true)
                 mainWindow.Close();
         }
+
+    }
+    public class Cell
+    {
+        public bool isWall;
     }
 }

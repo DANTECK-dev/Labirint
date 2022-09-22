@@ -5,35 +5,34 @@
         Title="Labirint"
         Height="400" 
         Width="600"
-        Icon="/mainicon1.ico"
+        Icon="C:\Users\SAS_ЪЫЪ\source\repos\WpfApp3\WpfApp3\logo_non_bg.ico"
         ResizeMode="NoResize" 
-        Closing="Window_Closing"
         Style="{StaticResource VS2012WindowStyle}"
         >
     <Window.Resources>
 
     </Window.Resources>
     <Grid Background="#FF252525">
-        <Canvas Margin="112,77,144,129">
-            <Button Style="{DynamicResource ButtonStyle1}" x:Name="StartGame" Content="Начать игру" Height="45" VerticalAlignment="Center" HorizontalAlignment="Left" Width="330" Canvas.Left="8" Canvas.Top="119" Background="#FF252525" BorderBrush="#FF15F3CA" Foreground="#FF15F3CA" FontSize="24" 
-                    Click="StartGame_Click">
+        <Canvas VerticalAlignment="Center" HorizontalAlignment="Center" Height="127" Width="390">
+            <Button Style="{DynamicResource ButtonStyle1}" x:Name="StartGame" Content="Начать игру" Height="45" VerticalAlignment="Top" HorizontalAlignment="Left" Width="370" Canvas.Left="10" Canvas.Top="68" Background="#FF252525" BorderBrush="#FF15F3CA" Foreground="#FF15F3CA" FontSize="24" 
+                    Click="StartGame_Click" FontFamily="Comic Sans MS">
                 <Button.Effect>
                     <DropShadowEffect Color="#FF252525" Direction="300" ShadowDepth="7" Opacity="0.5" BlurRadius="9"/>
                 </Button.Effect>
             </Button>
-            <TextBox Style="{DynamicResource TextBoxStyle1}" x:Name="LengthField" TextWrapping="Wrap" Text=" Длина поля" HorizontalAlignment="Left" Width="138" Height="44" VerticalAlignment="Top" Canvas.Left="12" Canvas.Top="56" SelectionBrush="#FF1D6298" Background="#FF252525" BorderBrush="#FF15F3CA" Foreground="#FF15F3CA" FontSize="22"
-                     TextChanged="LengthField_TextChanged" MouseDoubleClick="LengthField_MouseDoubleClick">
+            <TextBox Style="{DynamicResource TextBoxStyle1}" x:Name="LengthField" TextWrapping="Wrap" Text=" Длина поля" HorizontalAlignment="Left" Width="167" Height="44" VerticalAlignment="Top" Canvas.Top="10" SelectionBrush="#FF1D6298" Background="#FF252525" BorderBrush="#FF15F3CA" Foreground="#FF15F3CA" FontSize="22"
+                     TextChanged="LengthField_TextChanged" MouseDoubleClick="LengthField_MouseDoubleClick" FontFamily="Comic Sans MS" Canvas.Left="10">
                 <TextBox.Effect>
                     <DropShadowEffect Color="#FF252525" Direction="300" ShadowDepth="7" Opacity="0.5" BlurRadius="9"/>
                 </TextBox.Effect>
             </TextBox>
-            <TextBox Style="{DynamicResource TextBoxStyle1}" x:Name="HeightField" TextWrapping="Wrap" Text=" Высота поля" HorizontalAlignment="Left" Width="155" Height="44" VerticalAlignment="Top" Canvas.Left="183" Canvas.Top="56" Background="#FF252525" Foreground="#FF15F3CA" BorderBrush="#FF15F3CA" FontSize="24"
-                     TextChanged="HeightField_TextChanged" MouseDoubleClick="HeightField_MouseDoubleClick">
+            <TextBox Style="{DynamicResource TextBoxStyle1}" x:Name="HeightField" TextWrapping="Wrap" Text=" Высота поля" HorizontalAlignment="Left" Width="167" Height="44" VerticalAlignment="Top" Canvas.Left="213" Canvas.Top="10" Background="#FF252525" Foreground="#FF15F3CA" BorderBrush="#FF15F3CA" FontSize="24"
+                     TextChanged="HeightField_TextChanged" MouseDoubleClick="HeightField_MouseDoubleClick" FontFamily="Comic Sans MS">
                 <TextBox.Effect>
                     <DropShadowEffect Color="#FF252525" Direction="300" ShadowDepth="7" Opacity="0.5" BlurRadius="9"/>
                 </TextBox.Effect>
             </TextBox>
-            <Label Style="{DynamicResource LabelStyle1}" Content="Х" Height="51" VerticalAlignment="Top" HorizontalAlignment="Left" Width="26" Canvas.Left="155" Canvas.Top="60" Foreground="#FF15F3CA" FontSize="24" RenderTransformOrigin="0.5,0.5">
+            <Label Style="{DynamicResource LabelStyle1}" Content="Х" Height="51" VerticalAlignment="Top" HorizontalAlignment="Left" Width="27" Canvas.Left="182" Canvas.Top="10" Foreground="#FF15F3CA" FontSize="24" RenderTransformOrigin="0.5,0.5" FontFamily="Comic Sans MS">
                 <Label.Effect>
                     <DropShadowEffect Color="#FF252525" Direction="300" ShadowDepth="5" Opacity="0.6" BlurRadius="9"/>
                 </Label.Effect>
