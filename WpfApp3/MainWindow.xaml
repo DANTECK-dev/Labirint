@@ -7,7 +7,6 @@
         Width="600"
         Icon="C:\Users\SAS_ЪЫЪ\source\repos\WpfApp3\WpfApp3\logo_non_bg.ico"
         ResizeMode="NoResize" 
-        Style="{StaticResource VS2012WindowStyle}"
         >
     <Window.Resources>
 

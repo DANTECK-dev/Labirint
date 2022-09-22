@@ -24,6 +24,8 @@ namespace WpfApp3
         public bool isRunning = false;
 
         Cell[][] cells;
+        int LengthField;
+        int HeightField;
 
         public Game()
         {
@@ -41,11 +43,20 @@ namespace WpfApp3
         
         private void RandGenerate()
         {
-            cells = new Cell[Convert.ToInt32(mainWindow.LengthField.Text.ToString())][];
+            try
+            {
+                LengthField = Convert.ToInt32(mainWindow.LengthField.Text.ToString().Split(" ")[0]);
+                HeightField = Convert.ToInt32(mainWindow.HeightField.Text.ToString().Split(" ")[0]);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            cells = new Cell[LengthField][];
             Random random = new Random();
             for(int i = 0; i < cells.Length; i++)
             {
-                cells[i] = new Cell[Convert.ToInt32(mainWindow.HeightField.Text.ToString())];
+                cells[i] = new Cell[HeightField];
 
                 for(var j = 0; j < cells[0].Length; j++)
                 {

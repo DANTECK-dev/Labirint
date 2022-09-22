@@ -7,7 +7,7 @@
         Width="1000" 
         ResizeMode="NoResize" 
         Icon="C:\Users\SAS_ЪЫЪ\source\repos\WpfApp3\WpfApp3\logo_non_bg.ico"
-        Style="{StaticResource VS2012WindowStyle}"
+
         Closing="Window_Closing">
     <Window.Resources>
         <Style x:Key="CanvasStyle1" TargetType="{x:Type Canvas}"/>
