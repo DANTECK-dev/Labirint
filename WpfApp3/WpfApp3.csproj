@@ -5,6 +5,8 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <PackageIcon>logo_non_bg.ico</PackageIcon>
+    <ApplicationIcon>Icons\logo_non_bg.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,7 +17,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Icons\logo_non_bg.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.Threading.Thread" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Icons\logo_non_bg.ico">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

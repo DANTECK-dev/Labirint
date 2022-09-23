@@ -10,6 +10,7 @@
     <SolidColorBrush x:Key="VS2012WindowBorderBrushInactive" Color="#FF252525" />
     <SolidColorBrush x:Key="VS2012WindowStatusForeground" Color="#FF15F3CA" />
     <SolidColorBrush x:Key="VS2012WindowStatusForegroundInactive" Color="#FF15F3CA" />
+    <SolidColorBrush x:Key="WindowStrokeColor" Color="Transparent"/>
 
     <Style x:Key="VS2012WindowStyleTitleBarButton" TargetType="{x:Type Button}">
         <Setter Property="Focusable" Value="false" />
@@ -67,7 +68,7 @@
                             x:Name="PART_Border"
                             Width="Auto"
                             Height="Auto"
-                            Background="#EFEFF2"
+                            Background="#FF15F3CA"
                             BorderBrush="{StaticResource VS2012WindowBorderBrush}"
                             BorderThickness="1"
                             Padding="0">
@@ -187,36 +188,39 @@
                         <Line
                             MouseDown="OnSizeNorth"
                             x:Name="lnSizeNorth"
-                            Stroke="Transparent"   
+                            Stroke="{StaticResource WindowStrokeColor}"   
                             Cursor="SizeNS"
                             X1="1" X2="{TemplateBinding ActualWidth}" Y1="1" Y2="1"
-                            StrokeThickness="3"
+                            StrokeThickness="1"
                             />
                         <Line
                             MouseDown="OnSizeSouth"
                             x:Name="lnSizeSouth"
-                            Stroke="Transparent"
+                            Stroke="{StaticResource WindowStrokeColor}"
                             VerticalAlignment="Bottom" 
                             Cursor="SizeNS"
                             X1="1" X2="{TemplateBinding ActualWidth}" Y1="{TemplateBinding ActualHeight}" Y2="{TemplateBinding ActualHeight}"
-                            StrokeThickness="3"
+                            StrokeThickness="1"
                             />
                         <Line
                             MouseDown="OnSizeWest"
                             x:Name="lnSizeWest"
-                            Stroke="Transparent"
+                            Stroke="{StaticResource WindowStrokeColor}"
                             Cursor="SizeWE"
                             X1="1" X2="1" Y1="1" Y2="{TemplateBinding ActualHeight}"
-                            StrokeThickness="3"
+                            StrokeThickness="1"
                             />
                         <Line
                             MouseDown="OnSizeEast"
                             x:Name="lnSizeEast"
-                            Stroke="Transparent"
+                            Stroke="{StaticResource WindowStrokeColor}"
                             HorizontalAlignment="Right" 
                             Cursor="SizeWE"
-                            X1="{TemplateBinding ActualWidth}" X2="{TemplateBinding ActualWidth}" Y1="1" Y2="{TemplateBinding ActualHeight}"
-                            StrokeThickness="3"
+                            X1="{TemplateBinding ActualWidth}" 
+                            X2="{TemplateBinding ActualWidth}" 
+                            Y1="1" 
+                            Y2="{TemplateBinding ActualHeight}"
+                            StrokeThickness="1"
                             />
                         <Rectangle MouseDown="OnSizeNorthWest" x:Name="rectSizeNorthWest" Cursor="SizeNWSE" Fill="Transparent" Width="5" Height="5" VerticalAlignment="Top" HorizontalAlignment="Left" />
                         <Rectangle MouseDown="OnSizeNorthEast" x:Name="rectSizeNorthEast" Cursor="SizeNESW" Fill="Transparent" Width="5" Height="5" VerticalAlignment="Top" HorizontalAlignment="Right" />
