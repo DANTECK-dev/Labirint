@@ -4,11 +4,11 @@
         xmlns:av="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="av"
         x:Class="WpfApp3.Game"
         Title="         Labirint" 
-        Height="720" 
+        Height="760" 
         Width="1000" 
         ResizeMode="NoResize" 
         Icon="Icons/logo_non_bg.ico"
-
+        KeyDown="Field_KeyDown"
         Closing="Window_Closing">
     <Window.Resources>
         <Style x:Key="CanvasStyle1" TargetType="{x:Type Canvas}"/>
@@ -18,9 +18,6 @@
     </Window.Style>
     <Grid Background="#FF252525">
         <Rectangle Height="700" Margin="10,0,0,0" Stroke="#FF15F3CA" VerticalAlignment="Center" RadiusX="12" RadiusY="12" HorizontalAlignment="Left" Width="700"/>
-        <Canvas x:Name="Field" Height="700" Margin="10,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="700">
-            <Rectangle Height="100" Fill="Transparent" Stroke="#FF15F3CA" Canvas.Top="10" Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="10" RadiusX="6.75" RadiusY="6.75"/>
-            <Rectangle Height="100" Stroke="#FF15F3CA" Canvas.Top="10" Width="100" Canvas.Left="115" RadiusX="6.75" RadiusY="6.75" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="#FF15F3CA"/>
-        </Canvas>
+        <Canvas x:Name="Field" Height="700" Margin="10,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="700"/>
     </Grid>
 </Window>

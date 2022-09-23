@@ -15,19 +15,19 @@
     <Grid Background="#FF252525">
         <Canvas VerticalAlignment="Center" HorizontalAlignment="Center" Height="127" Width="390">
             <Button Style="{DynamicResource ButtonStyle1}" x:Name="StartGame" Content="Начать игру" Height="45" VerticalAlignment="Top" HorizontalAlignment="Left" Width="370" Canvas.Left="10" Canvas.Top="68" Background="#FF252525" BorderBrush="#FF15F3CA" Foreground="#FF15F3CA" FontSize="24" 
-                    Click="StartGame_Click" FontFamily="Comic Sans MS">
+                    Click="StartGame_Click" FontFamily="Comic Sans MS" KeyDown="StartGame_KeyDown">
                 <Button.Effect>
                     <DropShadowEffect Color="#FF252525" Direction="300" ShadowDepth="7" Opacity="0.5" BlurRadius="9"/>
                 </Button.Effect>
             </Button>
             <TextBox Style="{DynamicResource TextBoxStyle1}" x:Name="LengthField" TextWrapping="Wrap" Text=" Длина поля" HorizontalAlignment="Left" Width="167" Height="44" VerticalAlignment="Top" Canvas.Top="10" SelectionBrush="#FF1D6298" Background="#FF252525" BorderBrush="#FF15F3CA" Foreground="#FF15F3CA" FontSize="22"
-                     TextChanged="LengthField_TextChanged" MouseDoubleClick="LengthField_MouseDoubleClick" FontFamily="Comic Sans MS" Canvas.Left="10">
+                     TextChanged="LengthField_TextChanged" MouseDoubleClick="LengthField_MouseDoubleClick" FontFamily="Comic Sans MS" Canvas.Left="10" KeyDown="LengthField_KeyDown">
                 <TextBox.Effect>
                     <DropShadowEffect Color="#FF252525" Direction="300" ShadowDepth="7" Opacity="0.5" BlurRadius="9"/>
                 </TextBox.Effect>
             </TextBox>
             <TextBox Style="{DynamicResource TextBoxStyle1}" x:Name="HeightField" TextWrapping="Wrap" Text=" Высота поля" HorizontalAlignment="Left" Width="167" Height="44" VerticalAlignment="Top" Canvas.Left="213" Canvas.Top="10" Background="#FF252525" Foreground="#FF15F3CA" BorderBrush="#FF15F3CA" FontSize="24"
-                     TextChanged="HeightField_TextChanged" MouseDoubleClick="HeightField_MouseDoubleClick" FontFamily="Comic Sans MS">
+                     TextChanged="HeightField_TextChanged" MouseDoubleClick="HeightField_MouseDoubleClick" FontFamily="Comic Sans MS" KeyDown="HeightField_KeyDown">
                 <TextBox.Effect>
                     <DropShadowEffect Color="#FF252525" Direction="300" ShadowDepth="7" Opacity="0.5" BlurRadius="9"/>
                 </TextBox.Effect>

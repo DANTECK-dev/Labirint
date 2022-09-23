@@ -28,6 +28,7 @@ namespace WpfApp3
         SolidColorBrush Green = new SolidColorBrush(Color.FromRgb(21, 243, 202));
         SolidColorBrush Orange = new SolidColorBrush(Color.FromRgb(243, 163, 21));
         SolidColorBrush Red = new SolidColorBrush(Color.FromRgb(243, 21, 21));
+        SolidColorBrush Transparent = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
 
         Game game;
         public bool isRunning = false;
@@ -38,12 +39,14 @@ namespace WpfApp3
             //thread = new Thread(LF_Fliking);
             //thread.IsBackground = true;
             //thread.Start();
+            LengthField.Focus();
             isRunning = true;
         }
 
         public MainWindow(Game game)
         {
             InitializeComponent();
+            LengthField.Focus();
             this.game = game;
             isRunning = true;
         }
@@ -51,6 +54,7 @@ namespace WpfApp3
         public MainWindow(Game game, bool isRunning)
         {
             InitializeComponent();
+            LengthField.Focus();
             this.game = game;
             this.isRunning = isRunning;
         }
@@ -65,30 +69,42 @@ namespace WpfApp3
                 //await HeightField_Fliking();
                 //await LengthField_Fliking();
                 MessageBox.Show("Некоректно введены поля длины и высоты", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                LengthField.Foreground = Red;
+                HeightField.Foreground = Red;
+                LengthField.BorderBrush = Red;
+                HeightField.BorderBrush = Red;
                 return;
             }
             if (!Int32.TryParse(HeightField.Text, out _))
             {
                 //await HeightField_Fliking();
                 MessageBox.Show("Некоректно введена высота поля", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                HeightField.Foreground = Red;
+                HeightField.BorderBrush = Red;
                 return;
             }
             if (!Int32.TryParse(LengthField.Text, out _))
             { 
                 //await LengthField_Fliking();
                 MessageBox.Show("Некоректно введена длина поля", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                LengthField.Foreground = Red;
+                LengthField.BorderBrush = Red;
                 return;
             }
             int length = Int32.Parse(LengthField.Text.Replace(" ", string.Empty));
             if (length > 100 || length < 20)
             {
                 MessageBox.Show("Длина поля должна быть не меньше 10 и не больше 30", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                LengthField.Foreground = Red;
+                LengthField.BorderBrush = Red;
                 return;
             }
             int height = Int32.Parse(HeightField.Text.Replace(" ", string.Empty));
             if (height > 100 || height < 20)
             {
                 MessageBox.Show("Высота поля должна быть не меньше 10 и не больше 30", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                HeightField.Foreground = Red;
+                HeightField.BorderBrush = Red;
                 return;
             }
             if(game == null)
@@ -96,34 +112,6 @@ namespace WpfApp3
             game.Visibility = Visibility.Visible;
             this.Visibility = Visibility.Hidden;
         }
-
-        /*        
-        public void LengthField_Fliking(IAsyncResult aRes)
-        {
-            for (int i = 0; i < 2; i++)
-            {
-                LengthField.BorderBrush = Orange;
-                LengthField.Foreground = Orange;
-                Thread.Sleep(50);
-                LengthField.BorderBrush = Red;
-                LengthField.Foreground = Red;
-                Thread.Sleep(50);
-            }
-        }
-
-        public void HeightField_Fliking()
-        {
-            for (int i = 0; i < 2; i++)
-            {
-                HeightField.BorderBrush = Orange;
-                HeightField.Foreground = Orange;
-                Thread.Sleep(50);
-                HeightField.BorderBrush = Red;
-                HeightField.Foreground = Red;
-                Thread.Sleep(50);
-            }
-        }
-        */
 
         private void LengthField_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -197,6 +185,78 @@ namespace WpfApp3
         private void HeightField_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             HeightField.Text = " ";
+        }
+
+        private void LengthField_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if(HeightField.Foreground == Red)
+                {
+                    HeightField.Focus();
+                    return;
+                }
+                else
+                {
+                    StartGame_Click(sender, e);
+                    return;
+                }
+            }
+            if(e.Key == Key.D || e.Key == Key.Right)
+            {
+                HeightField.Focus();
+                return;
+            }
+            if (e.Key == Key.S || e.Key == Key.Down)
+            {
+                StartGame.Focus();
+                return;
+            }
+            LengthField.Text = LengthField.Text.Replace("Длина", string.Empty);
+            LengthField.Text = LengthField.Text.Replace("поля", string.Empty);
+        }
+
+        private void HeightField_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (LengthField.Foreground == Red)
+                {
+                    LengthField.Focus();
+                    return;
+                }
+                else
+                {
+                    StartGame_Click(sender, e);
+                    return;
+                }
+            }
+            if (e.Key == Key.A || e.Key == Key.Right)
+            {
+                LengthField.Focus();
+                return;
+            }
+            if(e.Key == Key.S || e.Key == Key.Down)
+            {
+                StartGame.Focus();
+                return;
+            }
+            HeightField.Text = HeightField.Text.Replace("Высота", string.Empty);
+            HeightField.Text = HeightField.Text.Replace("поля", string.Empty);
+        }
+
+        private void StartGame_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.A || e.Key == Key.Left || e.Key == Key.W || e.Key == Key.Up)
+            {
+                LengthField.Focus();
+                return;
+            }
+            if (e.Key == Key.D || e.Key == Key.Right)
+            {
+                HeightField.Focus();
+                return;
+            }
         }
 
         /*private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
