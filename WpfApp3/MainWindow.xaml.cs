@@ -92,7 +92,7 @@ namespace WpfApp3
                 return;
             }
             int length = Int32.Parse(LengthField.Text.Replace(" ", string.Empty));
-            if (length > 100 || length < 20)
+            if (length > 80 || length < 20)
             {
                 MessageBox.Show("Длина поля должна быть не меньше 10 и не больше 30", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 LengthField.Foreground = Red;
@@ -100,7 +100,7 @@ namespace WpfApp3
                 return;
             }
             int height = Int32.Parse(HeightField.Text.Replace(" ", string.Empty));
-            if (height > 100 || height < 20)
+            if (height > 80 || height < 20)
             {
                 MessageBox.Show("Высота поля должна быть не меньше 10 и не больше 30", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 HeightField.Foreground = Red;
@@ -126,7 +126,7 @@ namespace WpfApp3
             {
                 LengthField.Text = str;
                 int length = Int32.Parse(str.Replace(" ", string.Empty));
-                if (length > 100 || length < 20)
+                if (length > 80 || length < 20)
                 {
                     LengthField.BorderBrush = Red;
                     LengthField.Foreground = Red;
@@ -163,7 +163,7 @@ namespace WpfApp3
             {
                 HeightField.Text = str;
                 int height = Int32.Parse(str.Replace(" ", string.Empty));
-                if (height > 100 || height < 20)
+                if (height > 80 || height < 20)
                 {
                     HeightField.BorderBrush = Red;
                     HeightField.Foreground = Red;

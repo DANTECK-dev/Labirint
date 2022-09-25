@@ -21,14 +21,16 @@ namespace WpfApp3
     {
         MainWindow mainWindow;
 
-        SolidColorBrush Green = new SolidColorBrush(Color.FromRgb(21, 243, 202));
-        SolidColorBrush Orange = new SolidColorBrush(Color.FromRgb(243, 163, 21));
-        SolidColorBrush Red = new SolidColorBrush(Color.FromRgb(243, 21, 21));
-        SolidColorBrush Transparent = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
+        static public SolidColorBrush Green = new SolidColorBrush(Color.FromRgb(21, 243, 202));
+        static public SolidColorBrush Orange = new SolidColorBrush(Color.FromRgb(243, 163, 21));
+        static public SolidColorBrush Red = new SolidColorBrush(Color.FromRgb(243, 21, 21));
+        static public SolidColorBrush Transparent = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
 
         public bool isRunning = false;
 
         Cell[][] cells;
+        int reverseCount;
+
         int CellLengthField;
         int CellHeightField;
 
@@ -37,8 +39,7 @@ namespace WpfApp3
 
         double CellLength;
         double CellHeight;
-
-        Cell StartCell;
+        
         Cell EndCell;
         Player player;
 
@@ -108,7 +109,10 @@ namespace WpfApp3
             EndCell = cells[random.Next(CellLengthField / 2, CellLengthField)] [random.Next(CellHeightField / 2, CellHeightField)];
             player.x = random.Next(CellLengthField / 2);
             player.y = random.Next(CellHeightField / 2);
+            cells[player.y][player.x].rectangle.Fill = Red;
             EndCell.rectangle.Fill = Orange;
+            reverseCount = random.Next((int)CellLengthField / 8) + 2;
+            Reverse_Count.Content = "Осталось " + reverseCount + " реверсов";
         }
         /*private void Recursive_Find(int x, int y)
         {
@@ -153,46 +157,45 @@ namespace WpfApp3
         {
             if (e.Key == Key.W)
             {
-                
-                if (player.y == 0)
-                {
-                    if (cells[CellHeightField - 1][player.x].rectangle.Fill == player.color) return;
-                }
-                else
-                {
-
-                }
-                if (cells[player.y - 1][player.x].rectangle.Fill == player.color)
-                    return;
+                if (cells[player.y == 0 ? CellHeightField - 1: player.y - 1][player.x].rectangle.Fill != Transparent) return;
                 cells[player.y][player.x].rectangle.Fill = Transparent;
+
                 if (player.y == 0)
-                    player.y = CellHeightField--;
+                    player.y = CellHeightField - 1;
                 else
                     player.y--;
-                cells[player.y][player.x].rectangle.Fill = Red;
-                return;
             }
-            if (e.Key == Key.S && player.y < CellHeightField && cells[player.y + 1][player.x].rectangle.Fill == player.color)
+            else if (e.Key == Key.S)
             {
+                if (cells[player.y == CellHeightField - 1 ? 0 : player.y + 1][player.x].rectangle.Fill != Transparent) return;
                 cells[player.y][player.x].rectangle.Fill = Transparent;
-                player.y++;
-                cells[player.y][player.x].rectangle.Fill = Red;
-                return;
+
+                if (player.y == CellHeightField - 1)
+                    player.y = 0;
+                else
+                    player.y++;
             }
-            if (e.Key == Key.A && player.x > 0 && cells[player.y][player.x - 1].rectangle.Fill == player.color)
+            else if (e.Key == Key.A)
             {
+                if (cells[player.y][player.x == 0 ? CellLengthField - 1 : player.x - 1].rectangle.Fill != Transparent) return;
                 cells[player.y][player.x].rectangle.Fill = Transparent;
-                player.x--;
-                cells[player.y][player.x].rectangle.Fill = Red;
-                return;
+
+                if (player.x == 0)
+                    player.x = CellLengthField - 1;
+                else
+                    player.x--;
             }
-            if (e.Key == Key.D && player.x < CellLengthField && cells[player.y][player.x + 1].rectangle.Fill == player.color)
+            else if (e.Key == Key.D)
             {
+                if (cells[player.y][player.x == CellLengthField - 1 ? 0 : player.x + 1].rectangle.Fill != Transparent) return;
                 cells[player.y][player.x].rectangle.Fill = Transparent;
-                player.x++;
-                cells[player.y][player.x].rectangle.Fill = Red;
-                return;
+
+                if (player.x == CellLengthField - 1)
+                    player.x = 0;
+                else
+                    player.x++;
             }
+            cells[player.y][player.x].rectangle.Fill = Red;
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -200,11 +203,30 @@ namespace WpfApp3
             if (mainWindow.isRunning == true)
                 mainWindow.Close();
         }
+
+        private void Reverse_Click(object sender, RoutedEventArgs e)
+        {
+            if (reverseCount != 0)
+            {
+                for (int i = 0; i < CellHeightField; i++)
+                {
+                    for (int j = 0; j < CellLengthField; j++)
+                    {
+                        if (cells[i][j].rectangle.Fill == Red) continue;
+                        if (cells[i][j].rectangle.Fill == Orange) continue;
+                        if (cells[i][j].rectangle.Fill == Transparent)
+                            cells[i][j].rectangle.Fill = Green;
+                        else
+                            cells[i][j].rectangle.Fill = Transparent;
+                    }
+                }
+                reverseCount--;
+                Reverse_Count.Content = "Осталось " + reverseCount + " реверсов";
+            }
+        }
     }
     public class Cell
     {
-        SolidColorBrush Green = new SolidColorBrush(Color.FromRgb(21, 243, 202));
-        SolidColorBrush Transparent = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
         public Rectangle rectangle;
         //public bool isWall;
         public double x;
@@ -217,7 +239,7 @@ namespace WpfApp3
             this.y = y;
             //this.isWall = isWall;
             rectangle = new Rectangle();
-            rectangle.Stroke = Green;
+            rectangle.Stroke = Game.Green;
             rectangle.Visibility = Visibility.Visible;
             rectangle.RadiusX = RadiusX;
             rectangle.RadiusY = RadiusY;
@@ -227,15 +249,15 @@ namespace WpfApp3
             rectangle.Width = width;
 
             if (isWall)
-                rectangle.Fill = Green;
+                rectangle.Fill = Game.Green;
             else
-                rectangle.Fill = Transparent;
+                rectangle.Fill = Game.Transparent;
         }
     }
     public class Player
     {
         public string Name;
-        public SolidColorBrush color = new SolidColorBrush(Color.FromRgb(243, 21, 21));
+        public SolidColorBrush color = Game.Red;
         public int x = 0;
         public int y = 0;
     }
