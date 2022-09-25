@@ -20,7 +20,7 @@
         <Rectangle Height="700" Margin="10,0,0,0" Stroke="#FF15F3CA" VerticalAlignment="Center" RadiusX="12" RadiusY="12" HorizontalAlignment="Left" Width="700"/>
         <Canvas x:Name="Field" Height="700" Margin="10,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="700"/>
         <Button x:Name="Reverse" Style="{DynamicResource ButtonStyle1}" HorizontalAlignment="Left" Margin="715,30,0,0" VerticalAlignment="Top" Width="50" Height="50">
-            <Image Source="Icons/swap_green.png" Width="40" Height="40"/>
+            <Image Source="Icons/swap_green_red.png" Width="40" Height="40"/>
             <Button.Effect>
                 <DropShadowEffect Color="#FF252525" Direction="300" ShadowDepth="7" Opacity="0.5" BlurRadius="9"/>
             </Button.Effect>
