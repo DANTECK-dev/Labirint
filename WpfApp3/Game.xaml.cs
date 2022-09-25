@@ -124,9 +124,16 @@ namespace WpfApp3
                 Reverse_Click(sender, e);
                 return;
             }
+            if (e.Key == Key.Q)
+            {
+                Restart_Button_Click(sender, e);
+                return;
+            }
             if (e.Key == Key.W)
             {
+                if (cells[player.y == 0 ? CellHeightField - 1 : player.y - 1][player.x].rectangle.Fill == Orange) YouWin();
                 if (cells[player.y == 0 ? CellHeightField - 1: player.y - 1][player.x].rectangle.Fill != Transparent) return;
+                
                 cells[player.y][player.x].rectangle.Fill = Transparent;
                 cells[player.y][player.x].rectangle.ToolTip = "Проход";
 
@@ -137,7 +144,9 @@ namespace WpfApp3
             }
             else if (e.Key == Key.S)
             {
+                if (cells[player.y == CellHeightField - 1 ? 0 : player.y + 1][player.x].rectangle.Fill == Orange) YouWin();
                 if (cells[player.y == CellHeightField - 1 ? 0 : player.y + 1][player.x].rectangle.Fill != Transparent) return;
+                
                 cells[player.y][player.x].rectangle.Fill = Transparent;
                 cells[player.y][player.x].rectangle.ToolTip = "Проход";
 
@@ -148,7 +157,9 @@ namespace WpfApp3
             }
             else if (e.Key == Key.A)
             {
+                if (cells[player.y][player.x == 0 ? CellLengthField - 1 : player.x - 1].rectangle.Fill == Orange) YouWin();
                 if (cells[player.y][player.x == 0 ? CellLengthField - 1 : player.x - 1].rectangle.Fill != Transparent) return;
+                
                 cells[player.y][player.x].rectangle.Fill = Transparent;
                 cells[player.y][player.x].rectangle.ToolTip = "Проход";
 
@@ -159,7 +170,9 @@ namespace WpfApp3
             }
             else if (e.Key == Key.D)
             {
+                if (cells[player.y][player.x == CellLengthField - 1 ? 0 : player.x + 1].rectangle.Fill == Orange) YouWin();
                 if (cells[player.y][player.x == CellLengthField - 1 ? 0 : player.x + 1].rectangle.Fill != Transparent) return;
+                
                 cells[player.y][player.x].rectangle.Fill = Transparent;
                 cells[player.y][player.x].rectangle.ToolTip = "Проход";
 
@@ -171,6 +184,13 @@ namespace WpfApp3
             cells[player.y][player.x].rectangle.Fill = Red;
             cells[player.y][player.x].rectangle.ToolTip = "Игрок";
         }
+
+        private void YouWin()
+        {
+            Win.Visibility = Visibility.Visible;
+            gaming_field.Visibility = Visibility.Hidden;
+        }
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             isRunning = false;
