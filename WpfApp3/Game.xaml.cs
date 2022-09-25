@@ -162,7 +162,7 @@ namespace WpfApp3
                 {
 
                 }
-                if (cells[player.y - 1][player.x].isWall == true)
+                if (cells[player.y - 1][player.x].rectangle.Fill == player.color)
                     return;
                 cells[player.y][player.x].rectangle.Fill = Transparent;
                 if (player.y == 0)
@@ -172,21 +172,21 @@ namespace WpfApp3
                 cells[player.y][player.x].rectangle.Fill = Red;
                 return;
             }
-            if (e.Key == Key.S && player.y < CellHeightField && cells[player.y + 1][player.x].isWall == false)
+            if (e.Key == Key.S && player.y < CellHeightField && cells[player.y + 1][player.x].rectangle.Fill == player.color)
             {
                 cells[player.y][player.x].rectangle.Fill = Transparent;
                 player.y++;
                 cells[player.y][player.x].rectangle.Fill = Red;
                 return;
             }
-            if (e.Key == Key.A && player.x > 0 && cells[player.y][player.x - 1].isWall == false)
+            if (e.Key == Key.A && player.x > 0 && cells[player.y][player.x - 1].rectangle.Fill == player.color)
             {
                 cells[player.y][player.x].rectangle.Fill = Transparent;
                 player.x--;
                 cells[player.y][player.x].rectangle.Fill = Red;
                 return;
             }
-            if (e.Key == Key.D && player.x < CellLengthField && cells[player.y][player.x + 1].isWall == false)
+            if (e.Key == Key.D && player.x < CellLengthField && cells[player.y][player.x + 1].rectangle.Fill == player.color)
             {
                 cells[player.y][player.x].rectangle.Fill = Transparent;
                 player.x++;
