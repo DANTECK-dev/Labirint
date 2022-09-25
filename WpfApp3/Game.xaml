@@ -21,10 +21,15 @@
         <Canvas x:Name="Field" Height="700" VerticalAlignment="Center" HorizontalAlignment="Center" Width="980">
             <Rectangle Height="700" Canvas.Left="0" Canvas.Top="0" Canvas.Bottom="0" Stroke="#FF15F3CA" VerticalAlignment="Center" RadiusX="12" RadiusY="12" HorizontalAlignment="Left" Width="700"/>
             <Button x:Name="Reverse_Button" Style="{DynamicResource ButtonStyle1}" HorizontalAlignment="Left" Margin="715,30,0,0" VerticalAlignment="Top" Width="50" Height="50" Click="Reverse_Click">
-                <Image Source="Icons/swap_green_red.ico" Width="40" Height="40"/>
+                <Image Source="Icons/swap_green.ico" Width="40" Height="40"/>
                 <Button.Effect>
                     <DropShadowEffect Color="#FF252525" Direction="300" ShadowDepth="7" Opacity="0.5" BlurRadius="9"/>
                 </Button.Effect>
+                <Button.ToolTip>
+                    <ToolTip>
+                        Заменяет все стены на проходы, а проходы на стены
+                    </ToolTip>
+                </Button.ToolTip>
             </Button>
             <Label x:Name="Reverse_Count" Content="None" Margin="770,30,10,680" FontFamily="Comic Sans MS" FontSize="30" FontWeight="Normal" Foreground="#FF15F3CA"/>
         </Canvas>
