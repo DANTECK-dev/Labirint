@@ -105,43 +105,88 @@ namespace WpfApp3
                 marginTop += 2 + CellHeight;
                 marginLeft = 10;
             }
-            EndCell = cells[random.Next(CellLengthField / 2, CellLengthField)][random.Next(CellHeightField / 2, CellHeightField)];
+            EndCell = cells[random.Next(CellLengthField / 2, CellLengthField)] [random.Next(CellHeightField / 2, CellHeightField)];
             player.x = random.Next(CellLengthField / 2);
             player.y = random.Next(CellHeightField / 2);
             EndCell.rectangle.Fill = Orange;
         }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        /*private void Recursive_Find(int x, int y)
         {
-            isRunning = false;
-            if (mainWindow.isRunning == true)
-                mainWindow.Close();
-        }
-
+            Random rnd = new Random();
+            switch(rnd.Next(5))
+            {
+                case 0:
+                    if(y > 0 && cells[y--][x] != EndCell)
+                    {
+                        cells[y--][x].rectangle.Fill = Transparent;
+                        cells[y--][x].isWall = false;
+                        Recursive_Find(x, y--);
+                    }
+                    break;
+                case 1:
+                    if (y < CellHeightField && cells[y++][x] != EndCell)
+                    {
+                        cells[y++][x].rectangle.Fill = Transparent;
+                        cells[y--][x].isWall = false;
+                        Recursive_Find(x, y++);
+                    }
+                    break;
+                case 2:
+                    if (x > 0 && cells[y][x--] != EndCell)
+                    {
+                        cells[y][x--].rectangle.Fill = Transparent;
+                        cells[y--][x].isWall = false;
+                        Recursive_Find(x--, y);
+                    }
+                    break;
+                case 3:
+                    if (x < CellLengthField && cells[y][x++] != EndCell)
+                    {
+                        cells[y][x++].rectangle.Fill = Transparent;
+                        cells[y--][x].isWall = false;
+                        Recursive_Find(x++, y);
+                    }
+                    break;
+            }
+        }*/
         private void Field_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.W && player.y > 0 && cells[player.y - 1][player.x].isWall != true)
+            if (e.Key == Key.W)
             {
+                
+                if (player.y == 0)
+                {
+                    if (cells[CellHeightField - 1][player.x].rectangle.Fill == player.color) return;
+                }
+                else
+                {
+
+                }
+                if (cells[player.y - 1][player.x].isWall == true)
+                    return;
                 cells[player.y][player.x].rectangle.Fill = Transparent;
-                player.y--;
+                if (player.y == 0)
+                    player.y = CellHeightField--;
+                else
+                    player.y--;
                 cells[player.y][player.x].rectangle.Fill = Red;
                 return;
             }
-            if (e.Key == Key.S && player.y < CellHeightField && cells[player.y + 1][player.x].isWall != true)
+            if (e.Key == Key.S && player.y < CellHeightField && cells[player.y + 1][player.x].isWall == false)
             {
                 cells[player.y][player.x].rectangle.Fill = Transparent;
                 player.y++;
                 cells[player.y][player.x].rectangle.Fill = Red;
                 return;
             }
-            if (e.Key == Key.A && player.x > 0 && cells[player.y][player.x - 1].isWall != true)
+            if (e.Key == Key.A && player.x > 0 && cells[player.y][player.x - 1].isWall == false)
             {
                 cells[player.y][player.x].rectangle.Fill = Transparent;
                 player.x--;
                 cells[player.y][player.x].rectangle.Fill = Red;
                 return;
             }
-            if (e.Key == Key.D && player.x < CellLengthField && cells[player.y][player.x + 1].isWall != true)
+            if (e.Key == Key.D && player.x < CellLengthField && cells[player.y][player.x + 1].isWall == false)
             {
                 cells[player.y][player.x].rectangle.Fill = Transparent;
                 player.x++;
@@ -149,13 +194,19 @@ namespace WpfApp3
                 return;
             }
         }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            isRunning = false;
+            if (mainWindow.isRunning == true)
+                mainWindow.Close();
+        }
     }
     public class Cell
     {
         SolidColorBrush Green = new SolidColorBrush(Color.FromRgb(21, 243, 202));
         SolidColorBrush Transparent = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255));
         public Rectangle rectangle;
-        public bool isWall;
+        //public bool isWall;
         public double x;
         public double y;
         double RadiusX = 6.75;
@@ -164,7 +215,7 @@ namespace WpfApp3
         {
             this.x = x;
             this.y = y;
-            this.isWall = isWall;
+            //this.isWall = isWall;
             rectangle = new Rectangle();
             rectangle.Stroke = Green;
             rectangle.Visibility = Visibility.Visible;
@@ -184,6 +235,7 @@ namespace WpfApp3
     public class Player
     {
         public string Name;
+        public SolidColorBrush color = new SolidColorBrush(Color.FromRgb(243, 21, 21));
         public int x = 0;
         public int y = 0;
     }
