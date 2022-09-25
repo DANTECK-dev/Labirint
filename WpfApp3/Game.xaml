@@ -32,6 +32,11 @@
                 </Button.ToolTip>
             </Button>
             <Label x:Name="Reverse_Count" Content="None" Margin="770,30,10,680" FontFamily="Comic Sans MS" FontSize="30" FontWeight="Normal" Foreground="#FF15F3CA"/>
+            <Button x:Name="Restart_Button" Style="{DynamicResource ButtonStyle1}"  Content="Рестарт" Canvas.Left="715" Canvas.Top="87" Foreground="#FF15F3CA" FontFamily="Comic Sans MS" HorizontalAlignment="Center" VerticalAlignment="Top" Width="255" Height="50" FontSize="30" Click="Restart_Button_Click">
+                <Button.Effect>
+                    <DropShadowEffect Color="#FF252525" Direction="300" ShadowDepth="7" Opacity="0.5" BlurRadius="9"/>
+                </Button.Effect>
+            </Button>
         </Canvas>
 
     </Grid>

@@ -198,6 +198,13 @@ namespace WpfApp3
                 Reverse_Count.Content = "Осталось " + reverseCount + " реверсов";
             }
         }
+
+        private void Restart_Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow window = new MainWindow();
+            window.Visibility = Visibility.Visible;
+            this.Close();
+        }
     }
     public class Cell
     {

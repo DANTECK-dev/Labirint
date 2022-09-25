@@ -107,7 +107,7 @@ namespace WpfApp3
                 HeightField.BorderBrush = Red;
                 return;
             }
-            if(game == null)
+            if (game == null)
                 game = new Game(this);
             game.Visibility = Visibility.Visible;
             this.Visibility = Visibility.Hidden;
